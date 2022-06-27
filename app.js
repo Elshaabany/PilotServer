@@ -33,8 +33,9 @@ app.use("/cart", cartRoutes);
 app.use("/order", orderRoutes);
 
 // handle 404 requests
-app.use((req, res, next) => {
-    res.status(404).render("404");
-});
+// app.use((req, res, next) => {
+//     res.status(404).render("404");
+// });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+
+app.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
