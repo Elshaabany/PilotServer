@@ -5,6 +5,13 @@ const bodyParser = require("body-parser");
 
 const port = process.env.PORT || 3000;
 
+// handle requests on / 
+app.get("/", (req, res) => {
+    // respond with html page
+    res.sendFile(__dirname + "/index.html");
+}
+);
+
 // respond to requests for /hello
 app.get("/hello", (req, res) => {
     res.send("Hello World!");
