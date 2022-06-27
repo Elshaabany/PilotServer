@@ -1,38 +1,40 @@
 "use strict";
+//Express server on port 3000
 const express = require("express");
 const app = express();
+const port = 3000;
+
+// Express server configuration
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
+// body parser
 const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const port = process.env.PORT || 3000;
-
-// allow static files to be served from the public folder
+// static files
 app.use(express.static("public"));
 
-// handle requests on / 
-app.get("/", (req, res) => {
-    // respond with html page
-    res.sendFile(__dirname + "/index.html");
-});
+// require routes
+const indexRoutes = require("./routes/index");
+const userRoutes = require("./routes/user");
+const adminRoutes = require("./routes/admin");
+const productRoutes = require("./routes/product");
+const cartRoutes = require("./routes/cart");
+const orderRoutes = require("./routes/order");
 
-// respond to requests for /hello
-app.get("/hello", (req, res) => {
-    res.send("Hello World!");
-});
-
-// respond to requests for /goodbye
-app.get("/goodbye", (req, res) => {
-    res.send("Goodbye World!");
-});
-
+// use routes
+app.use("/", indexRoutes);
+app.use("/user", userRoutes);
+app.use("/admin", adminRoutes);
+app.use("/product", productRoutes);
+app.use("/cart", cartRoutes);
+app.use("/order", orderRoutes);
 
 // handle 404 requests
-app.use((req, res) => {
-    res.status(404).send("404: Page not found");
+app.use((req, res, next) => {
+    res.status(404).render("404");
 });
 
-
-const server = app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-    // server url
-    console.log(`http://localhost:${port}`);
-})
+app.listen(port, () => console.log(`Listening on port ${port}`));
