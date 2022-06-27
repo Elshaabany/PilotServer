@@ -60,37 +60,6 @@ const router = express.Router();
 // router.get("/logout", isAuth, userController.getLogout);
 // // /user/profile => GET
 // router.get("/profile", isAuth, userController.getProfile);
-// // /user/profile => POST
-// router.post(
-//     "/profile",
-//     [
-//         body("name")
-//             .isString()
-//             .isLength({ min: 3 })
-//             .trim(),
-//         body("email")
-//             .isEmail()
-//             .withMessage("Please enter a valid email address.")
-//             .normalizeEmail()
-//             .trim(),
-//         body("password")
-//             .isLength({ min: 6 })
-//             .withMessage("Password must be at least 6 characters long.")
-//             .trim(),
-//         body("confirmPassword")
-//             .isLength({ min: 6 })
-//             .withMessage("Password must be at least 6 characters long.")
-//             .custom((value, { req }) => {
-//                 if (value !== req.body.password) {
-//                     throw new Error("Passwords don't match!");
-//                 }
-//                 return true;
-//             }
-//             )
-//             .trim()
-//     ],
-//     userController.postProfile
-// );
 // // /user/delete-account => POST
 // router.post("/delete-account", isAuth, userController.postDeleteAccount);
 // // /user/change-password => POST
