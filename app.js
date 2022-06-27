@@ -5,12 +5,14 @@ const bodyParser = require("body-parser");
 
 const port = process.env.PORT || 3000;
 
+// allow static files to be served from the public folder
+app.use(express.static("public"));
+
 // handle requests on / 
 app.get("/", (req, res) => {
     // respond with html page
     res.sendFile(__dirname + "/index.html");
-}
-);
+});
 
 // respond to requests for /hello
 app.get("/hello", (req, res) => {
