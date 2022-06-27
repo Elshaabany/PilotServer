@@ -10,6 +10,11 @@ app.get("/hello", (req, res) => {
     res.send("Hello World!");
 });
 
+// handle 404 requests
+app.use((req, res) => {
+    res.status(404).send("404: Page not found");
+});
+
 const server = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 })
