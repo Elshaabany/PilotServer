@@ -23,5 +23,7 @@ app.use((req, res) => {
 
 
 const server = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+    console.log(`Listening on port ${port}`);
+    // server url
+    console.log(`http://localhost:${port}`);
 })
